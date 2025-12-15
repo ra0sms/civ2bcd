@@ -1,5 +1,5 @@
 ################################################################################
-# MRS Version: 2.1.0
+# MRS Version: 2.2.0
 # Automatically-generated file. Do not edit!
 ################################################################################
 -include ../makefile.init
@@ -55,7 +55,7 @@ main-build: civ2bcd.elf secondary-outputs
 
 # Tool invocations
 civ2bcd.elf: $(OBJS) $(USER_OBJS)
-	@	riscv-none-embed-gcc -march=rv32ecxw -mabi=ilp32e -msmall-data-limit=0 -msave-restore -fmax-errors=20 -Os -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections -fno-common -Wunused -Wuninitialized -g -T "/home/mrsuser/civ2bcd/code/civ2bcd/Ld/Link.ld" -nostartfiles -Xlinker --gc-sections -Xlinker --print-memory-usage -Wl,-Map,"civ2bcd.map" --specs=nano.specs --specs=nosys.specs -o "civ2bcd.elf" $(OBJS) $(USER_OBJS) $(LIBS) -lprintf
+	@	riscv-none-embed-gcc -march=rv32ecxw -mabi=ilp32e -msmall-data-limit=0 -msave-restore -fmax-errors=20 -Os -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections -fno-common -Wunused -Wuninitialized -g -T "/home/ra0sms/stm32/RiskV/civ2bcd/code/civ2bcd/Ld/Link.ld" -nostartfiles -Xlinker --gc-sections -Xlinker --print-memory-usage -Wl,-Map,"civ2bcd.map" --specs=nano.specs --specs=nosys.specs -o "civ2bcd.elf" $(OBJS)  $(LIBS) -lprintf
 civ2bcd.hex: civ2bcd.elf
 	@	riscv-none-embed-objcopy -O ihex "civ2bcd.elf" "civ2bcd.hex"
 civ2bcd.lst: civ2bcd.elf
@@ -65,7 +65,7 @@ civ2bcd.siz: civ2bcd.elf
 
 # Other Targets
 clean:
-	-$(RM) $(OBJS)$(SECONDARY_FLASH)$(SECONDARY_LIST)$(SECONDARY_SIZE)$(S_DEPS)$(S_UPPER_DEPS)$(ASM_DEPS)$(ASM_UPPER_DEPS)$(C_DEPS) civ2bcd.elf
+	-$(RM) $(OBJS) $(EXPANDS) $(CALLGRAPH_DOT) $(SECONDARY_FLASH)$(SECONDARY_LIST)$(SECONDARY_SIZE)$(S_DEPS)$(S_UPPER_DEPS)$(ASM_DEPS)$(ASM_UPPER_DEPS)$(C_DEPS) civ2bcd.elf
 
 secondary-outputs: $(SECONDARY_FLASH) $(SECONDARY_LIST) $(SECONDARY_SIZE)
 

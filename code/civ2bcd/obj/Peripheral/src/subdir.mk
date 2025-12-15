@@ -1,5 +1,5 @@
 ################################################################################
-# MRS Version: 2.1.0
+# MRS Version: 2.2.0
 # Automatically-generated file. Do not edit!
 ################################################################################
 
@@ -59,7 +59,27 @@ OBJS += \
 ./Peripheral/src/ch32v00x_wwdg.o 
 
 
+EXPANDS += \
+./Peripheral/src/ch32v00x_adc.c.234r.expand \
+./Peripheral/src/ch32v00x_dbgmcu.c.234r.expand \
+./Peripheral/src/ch32v00x_dma.c.234r.expand \
+./Peripheral/src/ch32v00x_exti.c.234r.expand \
+./Peripheral/src/ch32v00x_flash.c.234r.expand \
+./Peripheral/src/ch32v00x_gpio.c.234r.expand \
+./Peripheral/src/ch32v00x_i2c.c.234r.expand \
+./Peripheral/src/ch32v00x_iwdg.c.234r.expand \
+./Peripheral/src/ch32v00x_misc.c.234r.expand \
+./Peripheral/src/ch32v00x_opa.c.234r.expand \
+./Peripheral/src/ch32v00x_pwr.c.234r.expand \
+./Peripheral/src/ch32v00x_rcc.c.234r.expand \
+./Peripheral/src/ch32v00x_spi.c.234r.expand \
+./Peripheral/src/ch32v00x_tim.c.234r.expand \
+./Peripheral/src/ch32v00x_usart.c.234r.expand \
+./Peripheral/src/ch32v00x_wwdg.c.234r.expand 
+
+
 
 # Each subdirectory must supply rules for building sources it contributes
 Peripheral/src/%.o: ../Peripheral/src/%.c
-	@	riscv-none-embed-gcc -march=rv32ecxw -mabi=ilp32e -msmall-data-limit=0 -msave-restore -fmax-errors=20 -Os -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections -fno-common -Wunused -Wuninitialized -g -I"/home/mrsuser/civ2bcd/code/civ2bcd/Debug" -I"/home/mrsuser/civ2bcd/code/civ2bcd/Core" -I"/home/mrsuser/civ2bcd/code/civ2bcd/User" -I"/home/mrsuser/civ2bcd/code/civ2bcd/Peripheral/inc" -std=gnu99 -MMD -MP -MF"$(@:%.o=%.d)" -MT"$(@)" -c -o "$@" "$<"
+	@	riscv-none-embed-gcc -march=rv32ecxw -mabi=ilp32e -msmall-data-limit=0 -msave-restore -fmax-errors=20 -Os -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections -fno-common -Wunused -Wuninitialized -g -I"/home/ra0sms/stm32/RiskV/civ2bcd/code/civ2bcd/Debug" -I"/home/ra0sms/stm32/RiskV/civ2bcd/code/civ2bcd/Core" -I"/home/ra0sms/stm32/RiskV/civ2bcd/code/civ2bcd/User" -I"/home/ra0sms/stm32/RiskV/civ2bcd/code/civ2bcd/Peripheral/inc" -std=gnu99 -MMD -MP -MF"$(@:%.o=%.d)" -MT"$(@)" -c -o "$@" "$<"
+

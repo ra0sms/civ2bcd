@@ -61,19 +61,49 @@ void USART1_IRQHandler(void)
 {
     if (USART_GetITStatus(USART1, USART_IT_RXNE) == RESET)
         return;
-    
+
     static uint8_t i = 0;
-    const uint8_t letter = USART_ReceiveData(USART1);
-    
-    if (letter == 0xFD) {
-        TRXData[i] = letter;
-        i = 0;
-        flag_band = Decode_band();
-    } else {
-        TRXData[i++] = letter;
-        i %= 15;
+    static uint8_t state = 0;  // 0 = §à§Ø§Ú§Õ§Ñ§ß§Ú§Ö FE, 1 = §à§Ø§Ú§Õ§Ñ§ß§Ú§Ö §Ó§ä§à§â§à§Ô§à FE, 2 = §á§â§Ú§×§Þ §ä§Ö§Ý§Ñ §á§Ñ§Ü§Ö§ä§Ñ
+    const uint8_t byte = USART_ReceiveData(USART1);
+
+    switch (state) {
+        case 0: // §°§Ø§Ú§Õ§Ñ§Ö§Þ §á§Ö§â§Ó§í§Û 0xFE
+            if (byte == 0xFE) {
+                state = 1;
+                TRXData[0] = 0xFE;
+                i = 1;
+            }
+            break;
+
+        case 1: // §°§Ø§Ú§Õ§Ñ§Ö§Þ §Ó§ä§à§â§à§Û 0xFE
+            if (byte == 0xFE) {
+                TRXData[1] = 0xFE;
+                i = 2;
+                state = 2;
+            } else {
+                state = 0; // §ã§Ò§â§à§ã ¡ª §ß§Ö FE, §ß§Ñ§é§Ú§ß§Ñ§Ö§Þ §Ù§Ñ§ß§à§Ó§à
+            }
+            break;
+
+        case 2: // §±§â§Ú§×§Þ §ä§Ö§Ý§Ñ §á§Ñ§Ü§Ö§ä§Ñ
+            if (i < sizeof(TRXData)) {
+                TRXData[i++] = byte;
+            } else {
+                state = 0; // §á§Ö§â§Ö§á§à§Ý§ß§Ö§ß§Ú§Ö ¡ª §ã§Ò§â§à§ã
+                break;
+            }
+
+            if (byte == 0xFD) { // §Ü§à§ß§Ö§è §á§Ñ§Ü§Ö§ä§Ñ
+                // §±§Ñ§Ü§Ö§ä §á§â§Ú§ß§ñ§ä: TRXData[0..i-1], §Õ§Ý§Ú§ß§Ñ = i
+                flag_band = Decode_band();
+                state = 0; // §Ô§à§ä§à§Ó§í §Ü §ã§Ý§Ö§Õ§å§ð§ë§Ö§Þ§å §á§Ñ§Ü§Ö§ä§å
+            }
+            break;
+
+        default:
+            state = 0;
     }
-    
+
     USART_ClearITPendingBit(USART1, USART_IT_RXNE);
 }
 

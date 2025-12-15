@@ -5,12 +5,12 @@
 			"type": "mrs-debugger",
 			"request": "launch",
 			"name": "civ2bcd",
-			"cwd": "/home/mrsuser/civ2bcd/code/civ2bcd",
+			"cwd": "/home/ra0sms/stm32/RiskV/civ2bcd/code/civ2bcd",
 			"openOCDCfg": {
 				"useLocalOpenOCD": true,
-				"executable": "/MRS-linux-x64/resources/app/resources/linux/components/WCH/OpenOCD/OpenOCD/bin/openocd",
+				"executable": "/home/ra0sms/MRS_220/resources/app/resources/linux/components/WCH/OpenOCD/OpenOCD/bin/openocd",
 				"configOptions": [
-					"-f \"/MRS-linux-x64/resources/app/resources/linux/components/WCH/OpenOCD/OpenOCD/bin/wch-riscv.cfg\" -c \"chip_id CH32V003\""
+					"-f \"/home/ra0sms/MRS_220/resources/app/resources/linux/components/WCH/OpenOCD/OpenOCD/bin/wch-riscv.cfg\" -c \"chip_id CH32V003\""
 				],
 				"gdbport": 3333,
 				"telnetport": 4444,
@@ -22,7 +22,7 @@
 				"enableNoZeroWaitingAreaFlash": false
 			},
 			"gdbCfg": {
-				"executable": "/MRS-linux-x64/resources/app/resources/linux/components/WCH/Toolchain/RISC-V Embedded GCC/bin/riscv-none-embed-gdb",
+				"executable": "/home/ra0sms/MRS_220/resources/app/resources/linux/components/WCH/Toolchain/RISC-V Embedded GCC/bin/riscv-none-embed-gdb",
 				"commands": [
 					"set mem inaccessible-by-default off",
 					"set architecture riscv:rv32",
@@ -39,8 +39,8 @@
 					"additionalCommands": []
 				},
 				"loadedFiles": {
-					"executableFile": "/home/mrsuser/civ2bcd/code/civ2bcd/obj/civ2bcd.elf",
-					"symbolFile": "/home/mrsuser/civ2bcd/code/civ2bcd/obj/civ2bcd.elf",
+					"executableFile": "/home/ra0sms/stm32/RiskV/civ2bcd/code/civ2bcd/obj/civ2bcd.elf",
+					"symbolFile": "/home/ra0sms/stm32/RiskV/civ2bcd/code/civ2bcd/obj/civ2bcd.elf",
 					"executableFileOffset": 0,
 					"symbolFileOffset": 0
 				},
@@ -54,12 +54,15 @@
 				},
 				"debugInRAM": false
 			},
-			"svdpath": "/MRS-linux-x64/resources/app/resources/linux/components/WCH/SDK/default/RISC-V/CH32V003/NoneOS/CH32V003xx.svd",
+			"svdpath": "/home/ra0sms/MRS_220/resources/app/resources/linux/components/WCH/SDK/default/RISC-V/CH32V003/NoneOS/CH32V003xx.svd",
 			"output": {
 				"showDebugGDBTrace": true,
 				"saveDebugOutputToFile": false,
 				"showDebugOutputTimestamps": true
-			}
+			},
+			"isDualCoreDebug": false,
+			"dualCoreDebugRole": null,
+			"architecture": "RISC-V"
 		}
 	]
 }
